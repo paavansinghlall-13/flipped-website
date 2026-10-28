@@ -4,277 +4,581 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Flipped. — an AI-assisted technology resale discovery app project, available for acquisition.">
+  <meta name="theme-color" content="#080d0a">
+  <meta name="description" content="Flipped. is a development-stage AI-assisted technology resale discovery iOS app project, available for acquisition.">
   <title>Flipped. — Smarter Tech Reselling</title>
+  <link rel="icon" type="image/png" href="Neon%20Flipped%20App%20Icon.png">
+
   <style>
     :root {
       --bg: #080d0a;
       --panel: #111b15;
+      --panel2: #152419;
       --green: #a3ff70;
       --text: #f4f8f2;
       --muted: #a6b4a8;
+      --border: #2b402f;
     }
+
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
     }
-    a { color: inherit; }
-    .wrap { max-width: 1080px; margin: auto; padding: 0 24px; }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+
+    .wrap {
+      width: min(1140px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
     header {
-      border-bottom: 1px solid #243528;
-      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 10, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
-    nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .logo { font-size: 30px; font-weight: 850; letter-spacing: -2px; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 850;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
     .logo span { color: var(--green); }
-    .navlink { font-size: 14px; color: var(--muted); text-decoration: none; }
-    .hero { padding: 110px 0 90px; text-align: center; }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .navlinks a {
+      font-size: 14px;
+      color: var(--muted);
+      transition: color .2s;
+    }
+
+    .navlinks a:hover,
+    .navlinks .active {
+      color: var(--green);
+    }
+
+    .nav-cta {
+      border: 1px solid #52754a;
+      padding: 8px 15px;
+      border-radius: 9px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 105px 0 95px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      max-width: 100%;
+      background: radial-gradient(circle, rgba(163,255,112,.11), transparent 70%);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
     .eyebrow {
       display: inline-block;
       color: var(--green);
-      border: 1px solid #426c3b;
-      border-radius: 99px;
-      padding: 7px 16px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .04em;
+      border: 1px solid #456d3d;
+      background: rgba(163,255,112,.04);
+      border-radius: 100px;
+      padding: 8px 17px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
     }
-    h1 { font-size: clamp(44px, 8vw, 88px); line-height: 1.07; letter-spacing: -4px; margin: 28px 0; }
-    h1 em { color: var(--green); font-style: normal; }
-    .lead { color: var(--muted); font-size: 19px; max-width: 680px; margin: 0 auto 32px; }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 94px);
+      line-height: 1.05;
+      letter-spacing: -4px;
+      margin: 30px 0 24px;
+    }
+
+    h1 span,
+    .accent {
+      color: var(--green);
+    }
+
+    .lead {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto 34px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
     .button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 25px;
       background: var(--green);
       color: #081008;
-      padding: 15px 26px;
+      border: 1px solid var(--green);
       border-radius: 12px;
       font-weight: 800;
-      text-decoration: none;
+      transition: transform .2s, opacity .2s;
     }
-    .secondary { margin-left: 12px; color: var(--text); text-decoration: none; }
-    section { padding: 65px 0; }
-    h2 { font-size: clamp(30px, 5vw, 44px); letter-spacing: -1.5px; margin: 0 0 16px; }
-    .intro { color: var(--muted); max-width: 700px; margin-bottom: 32px; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    .button:hover {
+      transform: translateY(-3px);
+      opacity: .9;
+    }
+
+    .button-outline {
+      background: transparent;
+      color: var(--text);
+      border-color: #456d3d;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-label {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.15;
+      letter-spacing: -2px;
+      margin: 14px 0 20px;
+    }
+
+    .intro {
+      color: var(--muted);
+      max-width: 730px;
+      margin-bottom: 35px;
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
     .card {
       background: var(--panel);
-      border: 1px solid #28392c;
-      padding: 28px;
-      border-radius: 18px;
-    }
-    .card strong { display: block; font-size: 19px; margin: 14px 0 8px; }
-    .card p { color: var(--muted); margin: 0; }
-    .symbol { font-size: 29px; }
-    .note {
-      background: #152318;
-      border: 1px solid #36543a;
-      border-radius: 18px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
       padding: 30px;
-      margin-top: 20px;
+      transition: border-color .2s, transform .2s;
     }
-    .note p { color: var(--muted); }
-    .list { color: var(--muted); padding-left: 22px; }
-    .list li { margin: 9px 0; }
-    .contact { text-align: center; padding: 75px 0 100px; }
-    .contact p { color: var(--muted); max-width: 630px; margin: 0 auto 28px; }
+
+    .card:hover {
+      border-color: #668d54;
+      transform: translateY(-4px);
+    }
+
+    .card .symbol {
+      font-size: 32px;
+      color: var(--green);
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      margin: 0 0 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .showcase-preview {
+      background: linear-gradient(145deg, #16291b, #0b120d);
+      border: 1px solid #3b633c;
+      border-radius: 26px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .showcase-preview h2 { margin-top: 10px; }
+
+    .showcase-preview p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .showcase-image {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #375b38;
+      display: block;
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    }
+
+    .showcase-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .status {
+      margin-top: 35px;
+      background: var(--panel2);
+      border: 1px solid #36543a;
+      padding: 30px;
+      border-radius: 18px;
+    }
+
+    .status strong { color: var(--green); }
+
+    .status p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .tech {
+      padding: 23px;
+      border-radius: 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 100px 0;
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 30px;
+      font-size: 17px;
+    }
+
     footer {
-      border-top: 1px solid #243528;
-      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
       color: var(--muted);
       font-size: 13px;
       text-align: center;
     }
-    @media (max-width: 720px) {
-      .hero { padding: 80px 0 60px; }
+
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .tech-grid { grid-template-columns: 1fr 1fr; }
+      .showcase-preview { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      nav { align-items: flex-start; }
+      .navlinks { gap: 10px 15px; justify-content: flex-end; }
+      .navlinks a { font-size: 12px; }
+      .logo { font-size: 26px; }
+      .hero { padding: 75px 0 65px; }
       h1 { letter-spacing: -2px; }
       .grid { grid-template-columns: 1fr; }
-      .secondary { display: block; margin: 18px 0 0; }
+      .showcase-preview { padding: 22px; }
+      .contact { padding: 75px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- NAVIGATION -->
   <header>
     <nav class="wrap">
-      <div class="logo">Flipped<span>.</span></div>
-      <a class="navlink" href="#acquisition">Available for acquisition</a>
+      <a class="logo" href="index.html">
+        Flipped<span>.</span>
+      </a>
+
+      <div class="navlinks">
+        <a class="active" href="index.html">Home</a>
+        <a href="showcase.html">Showcase</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="#acquisition">Enquire</a>
+      </div>
     </nav>
   </header>
 
   <main>
+
+    <!-- HERO -->
     <div class="wrap hero">
-      <span class="eyebrow">PRE-LAUNCH iOS SOFTWARE PROJECT</span>
-      <h1>Find the deal.<br><em>See the potential.</em></h1>
+      <span class="eyebrow">
+        Pre-launch iOS software project
+      </span>
+
+      <h1>
+        Find the deal.<br>
+        <span>See the potential.</span>
+      </h1>
+
       <p class="lead">
-        Flipped. is an AI-assisted technology resale discovery
-        app concept designed to help people research second-hand
-        electronics listings and identify potential resale opportunities.
+        Meet Flipped. — an AI-assisted technology resale
+        discovery app project designed to help people
+        research second-hand electronics and identify
+        potential resale opportunities.
       </p>
-      <a class="button" href="#acquisition">Explore the acquisition</a>
-      <a class="secondary" href="#features">Discover the concept ↓</a>
-    </div>
 
-    <section id="features">
-      <div class="wrap">
-        <h2>Built around smarter reselling.</h2>
-        <p class="intro">
-          Flipped. brings marketplace discovery and resale research
-          into one focused mobile product vision.
-        </p>
-        <div class="grid">
-          <div class="card">
-            <div class="symbol">⌕</div>
-            <strong>Deal discovery</strong>
-            <p>Explore second-hand electronics listings and research potential buying opportunities.</p>
-          </div>
-          <div class="card">
-            <div class="symbol">✦</div>
-            <strong>AI-assisted valuation</strong>
-            <p>A product direction focused on helping users assess resale values and potential margins.</p>
-          </div>
-          <div class="card">
-            <div class="symbol">↗</div>
-            <strong>Reseller-focused experience</strong>
-            <p>A dedicated iOS interface designed around technology resale research and future deal-tracking tools.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="technology">
-      <div class="wrap">
-        <h2>An existing development foundation.</h2>
-        <p class="intro">
-          The project includes native iOS development work,
-          backend source code, branding and supporting product assets.
-        </p>
-        <div class="grid">
-          <div class="card">
-            <strong>Swift + SwiftUI</strong>
-            <p>Native iOS application source code and interface development.</p>
-          </div>
-          <div class="card">
-            <strong>Node.js backend</strong>
-            <p>Separate JavaScript backend codebase and marketplace integration work.</p>
-          </div>
-          <div class="card">
-            <strong>AI + marketplace APIs</strong>
-            <p>Development work involving eBay APIs, Google Gemini and Firebase services.</p>
-          </div>
-        </div>
-        <div class="note">
-          <strong>Current status: Development stage</strong>
-          <p>
-            Flipped. is pre-revenue and has not established a public
-            user base or verified download history. Some features and
-            integrations require further testing or completion before
-            a commercial launch. This website showcases the project
-            and does not represent a publicly available app.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="acquisition">
-      <div class="wrap contact">
-        <span class="eyebrow">ACQUISITION OPPORTUNITY</span>
-        <h2>Make Flipped. your next project.</h2>
-        <p>
-          Flipped. is available for acquisition as a development-stage
-          software project, including agreed source code, transferable
-          branding, design assets and documentation.
-          Interested buyers can request further details.
-        </p>
-        <a class="button" href="mailto:Paavan.singhlall@gmail.com?subject=Flipped.%20Acquisition%20Enquiry">
-          Enquire about Flipped.
+      <div class="buttons">
+        <a class="button" href="showcase.html">
+          Explore the Showcase →
+        </a>
+        <a class="button button-outline" href="#acquisition">
+          Acquisition Enquiries
         </a>
       </div>
+    </div>
+
+    <!-- FEATURES -->
+    <section id="features">
+      <div class="wrap">
+        <span class="section-label">The Concept</span>
+        <h2>Built for smarter reselling.</h2>
+
+        <p class="intro">
+          Finding a promising electronics listing is only
+          the beginning. Flipped. aims to simplify the research
+          behind buying, valuing and reselling technology.
+        </p>
+
+        <div class="grid">
+
+          <div class="card">
+            <div class="symbol">⌕</div>
+            <h3>Deal Discovery</h3>
+            <p>
+              A focused experience for exploring
+              second-hand electronics listings and
+              researching potential buying opportunities.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="symbol">✦</div>
+            <h3>AI-Assisted Research</h3>
+            <p>
+              A product direction centred on helping
+              resellers assess device values and
+              possible resale margins.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="symbol">↗</div>
+            <h3>Reseller-Focused Design</h3>
+            <p>
+              A dedicated native iOS interface
+              with plans for saved deals,
+              advanced filters and personalised alerts.
+            </p>
+          </div>
+
+        </div>
+      </div>
     </section>
-  
-<!-- FLIPPED SHOWCASE -->
-<section id="showcase" style="padding:80px 20px;background:#080d0a;color:#f4f8f2;">
-  <div style="max-width:1150px;margin:auto;">
-    <p style="color:#a3ff70;font-weight:700;letter-spacing:3px;">PRODUCT SHOWCASE</p>
-    <h2 style="font-size:clamp(32px,5vw,56px);margin:10px 0;">See Flipped. in action.</h2>
-    <p style="color:#a6b4a8;max-width:700px;">
-      Explore the design, product experience and vision behind Flipped.,
-      a development-stage iOS technology resale discovery project.
-    </p>
 
-    <div style="margin:40px 0 60px;">
-      <h3 style="font-size:25px;">Watch the product showcase</h3>
-      <video controls playsinline preload="metadata"
-        style="display:block;width:100%;max-width:900px;margin:20px auto;border-radius:20px;border:1px solid #25432b;background:#000;">
-        <source src="Flipped-Phone-Advert-Final.mp4" type="video/mp4">
-        Your browser does not support video playback.
-      </video>
-    </div>
+    <!-- SEPARATE SHOWCASE PAGE PREVIEW -->
+    <section id="showcase">
+      <div class="wrap">
 
-    <h3 style="font-size:25px;">Explore the 12-screen showcase</h3>
-    <p style="color:#a6b4a8;">Tap any image to view it in full size.</p>
+        <div class="showcase-preview">
 
-    <div class="flipped-gallery">
-      <a href="Flipped_01_DISCOVER.png" target="_blank"><img src="Flipped_01_DISCOVER.png" alt="Discover"></a>
-      <a href="Flipped_02_INSPECT.png" target="_blank"><img src="Flipped_02_INSPECT.png" alt="Inspect"></a>
-      <a href="Flipped_03_SCAN.png" target="_blank"><img src="Flipped_03_SCAN.png" alt="Scan"></a>
-      <a href="Flipped_04_EXPLORE.png" target="_blank"><img src="Flipped_04_EXPLORE.png" alt="Explore"></a>
-      <a href="Flipped_05_CATEGORIES.png" target="_blank"><img src="Flipped_05_CATEGORIES.png" alt="Categories"></a>
-      <a href="Flipped_06_FILTER.png" target="_blank"><img src="Flipped_06_FILTER.png" alt="Filter"></a>
-      <a href="Flipped_07_DETAILS.png" target="_blank"><img src="Flipped_07_DETAILS.png" alt="Details"></a>
-      <a href="Flipped_08_SAVE.png" target="_blank"><img src="Flipped_08_SAVE.png" alt="Save"></a>
-      <a href="Flipped_09_ASK_FLIP_AI.png" target="_blank"><img src="Flipped_09_ASK_FLIP_AI.png" alt="Ask Flip AI"></a>
-      <a href="Flipped_10_DECIDE.png" target="_blank"><img src="Flipped_10_DECIDE.png" alt="Decide"></a>
-      <a href="Flipped_11_YOUR_THEME.png" target="_blank"><img src="Flipped_11_YOUR_THEME.png" alt="Light and dark themes"></a>
-      <a href="Flipped_12_GET_STARTED.png" target="_blank"><img src="Flipped_12_GET_STARTED.png" alt="Get started"></a>
-    </div>
+          <div>
+            <span class="section-label">
+              Product Showcase
+            </span>
 
-    <p style="margin-top:25px;color:#a6b4a8;font-size:13px;">
-      Product showcase visuals illustrate the design and intended experience.
-      Flipped. is a development-stage project, not a publicly launched application.
-    </p>
-  </div>
-</section>
+            <h2>
+              A closer look at <span class="accent">Flipped.</span>
+            </h2>
 
-<style>
-  .flipped-gallery {
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:18px;
-    margin-top:28px;
-  }
-  .flipped-gallery a {
-    display:block;
-    overflow:hidden;
-    border:1px solid #25432b;
-    border-radius:16px;
-    background:#111b15;
-    transition:transform .2s ease,border-color .2s ease;
-  }
-  .flipped-gallery a:hover {
-    transform:translateY(-4px);
-    border-color:#a3ff70;
-  }
-  .flipped-gallery img {
-    display:block;
-    width:100%;
-    height:auto;
-  }
-  @media(max-width:650px) {
-    .flipped-gallery {grid-template-columns:1fr;}
-  }
-</style>
-<!-- END FLIPPED SHOWCASE -->
+            <p>
+              Explore the product's visual identity,
+              interface designs and promotional video
+              on a dedicated showcase page.
+            </p>
+
+            <p>
+              Featuring 12 screen presentations,
+              a dark-and-neon-green aesthetic
+              and a video you can play directly
+              on the website.
+            </p>
+
+            <div class="showcase-actions">
+              <a class="button" href="showcase.html">
+                View Full Showcase →
+              </a>
+
+              <a class="button button-outline"
+                 href="showcase.html#video">
+                Watch Video ▶
+              </a>
+            </div>
+          </div>
+
+          <a href="showcase.html" aria-label="Open Flipped showcase">
+            <img
+              class="showcase-image"
+              src="Flipped_12_Image_Overview.jpg"
+              alt="Overview of the Flipped. product interface showcase"
+              loading="lazy"
+            >
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+
+        <span class="section-label">About the Project</span>
+
+        <h2>An existing development foundation.</h2>
+
+        <p class="intro">
+          Flipped. includes native iOS application
+          development work, a separate backend codebase,
+          branding and supporting product design assets.
+          It is being offered as a development-stage
+          software acquisition opportunity.
+        </p>
+
+        <div class="tech-grid">
+          <div class="tech">Swift + SwiftUI</div>
+          <div class="tech">Node.js</div>
+          <div class="tech">eBay API Work</div>
+          <div class="tech">Gemini + Firebase</div>
+        </div>
+
+        <div class="status">
+          <strong>Current Status: Development Stage</strong>
+
+          <p>
+            Flipped. is pre-revenue and has no established
+            public user base or verified download history.
+            Some functionality and third-party integrations
+            require additional testing, refinement or
+            completion before a commercial launch.
+            The product showcase illustrates the intended
+            experience and does not represent a publicly
+            released application.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACQUISITION -->
+    <section id="acquisition">
+      <div class="wrap contact">
+
+        <span class="eyebrow">
+          Available for Acquisition
+        </span>
+
+        <h2>
+          Make Flipped. <span class="accent">your next project.</span>
+        </h2>
+
+        <p>
+          Interested in acquiring the Flipped. development
+          project? The proposed sale includes agreed
+          iOS and backend source code, transferable
+          branding, design assets and supporting
+          documentation.
+        </p>
+
+        <div class="buttons">
+          <a
+            class="button"
+            href="mailto:Paavan.singhlall@gmail.com?subject=Flipped.%20Acquisition%20Enquiry"
+          >
+            Enquire About Flipped. →
+          </a>
+
+          <a
+            class="button button-outline"
+            href="showcase.html"
+          >
+            Explore the Showcase
+          </a>
+        </div>
+
+      </div>
+    </section>
 
   </main>
 
   <footer>
     <div class="wrap">
-      © 2026 Flipped. · Development-stage software project · No revenue or user traction claimed
+      © 2026 Flipped. · Development-stage software project
+      · No revenue or user traction claimed
     </div>
   </footer>
+
 </body>
 </html>
