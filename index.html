@@ -194,6 +194,81 @@
         </a>
       </div>
     </section>
+  
+<!-- FLIPPED SHOWCASE -->
+<section id="showcase" style="padding:80px 20px;background:#080d0a;color:#f4f8f2;">
+  <div style="max-width:1150px;margin:auto;">
+    <p style="color:#a3ff70;font-weight:700;letter-spacing:3px;">PRODUCT SHOWCASE</p>
+    <h2 style="font-size:clamp(32px,5vw,56px);margin:10px 0;">See Flipped. in action.</h2>
+    <p style="color:#a6b4a8;max-width:700px;">
+      Explore the design, product experience and vision behind Flipped.,
+      a development-stage iOS technology resale discovery project.
+    </p>
+
+    <div style="margin:40px 0 60px;">
+      <h3 style="font-size:25px;">Watch the product showcase</h3>
+      <video controls playsinline preload="metadata"
+        style="display:block;width:100%;max-width:900px;margin:20px auto;border-radius:20px;border:1px solid #25432b;background:#000;">
+        <source src="Flipped-Phone-Advert-Final.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+    </div>
+
+    <h3 style="font-size:25px;">Explore the 12-screen showcase</h3>
+    <p style="color:#a6b4a8;">Tap any image to view it in full size.</p>
+
+    <div class="flipped-gallery">
+      <a href="Flipped_01_DISCOVER.png" target="_blank"><img src="Flipped_01_DISCOVER.png" alt="Discover"></a>
+      <a href="Flipped_02_INSPECT.png" target="_blank"><img src="Flipped_02_INSPECT.png" alt="Inspect"></a>
+      <a href="Flipped_03_SCAN.png" target="_blank"><img src="Flipped_03_SCAN.png" alt="Scan"></a>
+      <a href="Flipped_04_EXPLORE.png" target="_blank"><img src="Flipped_04_EXPLORE.png" alt="Explore"></a>
+      <a href="Flipped_05_CATEGORIES.png" target="_blank"><img src="Flipped_05_CATEGORIES.png" alt="Categories"></a>
+      <a href="Flipped_06_FILTER.png" target="_blank"><img src="Flipped_06_FILTER.png" alt="Filter"></a>
+      <a href="Flipped_07_DETAILS.png" target="_blank"><img src="Flipped_07_DETAILS.png" alt="Details"></a>
+      <a href="Flipped_08_SAVE.png" target="_blank"><img src="Flipped_08_SAVE.png" alt="Save"></a>
+      <a href="Flipped_09_ASK_FLIP_AI.png" target="_blank"><img src="Flipped_09_ASK_FLIP_AI.png" alt="Ask Flip AI"></a>
+      <a href="Flipped_10_DECIDE.png" target="_blank"><img src="Flipped_10_DECIDE.png" alt="Decide"></a>
+      <a href="Flipped_11_YOUR_THEME.png" target="_blank"><img src="Flipped_11_YOUR_THEME.png" alt="Light and dark themes"></a>
+      <a href="Flipped_12_GET_STARTED.png" target="_blank"><img src="Flipped_12_GET_STARTED.png" alt="Get started"></a>
+    </div>
+
+    <p style="margin-top:25px;color:#a6b4a8;font-size:13px;">
+      Product showcase visuals illustrate the design and intended experience.
+      Flipped. is a development-stage project, not a publicly launched application.
+    </p>
+  </div>
+</section>
+
+<style>
+  .flipped-gallery {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+    margin-top:28px;
+  }
+  .flipped-gallery a {
+    display:block;
+    overflow:hidden;
+    border:1px solid #25432b;
+    border-radius:16px;
+    background:#111b15;
+    transition:transform .2s ease,border-color .2s ease;
+  }
+  .flipped-gallery a:hover {
+    transform:translateY(-4px);
+    border-color:#a3ff70;
+  }
+  .flipped-gallery img {
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  @media(max-width:650px) {
+    .flipped-gallery {grid-template-columns:1fr;}
+  }
+</style>
+<!-- END FLIPPED SHOWCASE -->
+
   </main>
 
   <footer>
